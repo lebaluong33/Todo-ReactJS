@@ -5,14 +5,13 @@ const footer = (props) => {
   <footer className="footer">
     <span className="todo-count">
       <strong>20</strong>
-      <span> </span>
       <span>items</span>
       <span> left</span>
     </span>
     <ul className="filters">
-      <li>All</li>
-      <li>Active</li>
-      <li>Completed</li>
+      <li><a href="/">All</a></li>
+      <li><a href="/">Active</a></li>
+      <li><a href="/">Completed</a></li>
     </ul>
     <button className="clear-completed" >Clear completed</button>
   </footer>

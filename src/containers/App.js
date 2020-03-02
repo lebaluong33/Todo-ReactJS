@@ -5,11 +5,39 @@ import Todos from '../components/Todos/Todos';
 import Footer from '../components/Footer/Footer';
 
 class App extends Component {
+  state = {
+    todoList: []
+  }
+
+  onChangeTodoHandler = (item) => {
+    const updatedTodos = this.state.todoList;
+    updatedTodos.push(item);
+    this.setState({todoList: updatedTodos});
+  }
+  
+  onCompletedHandler = (id) => {
+    const updatedTodoIndex = this.state.todoList.findIndex((todo) => todo.id === id);
+    const updatedTodoItem = {...this.state.todoList[updatedTodoIndex]};
+    updatedTodoItem.isCompleted = !this.state.todoList[updatedTodoIndex].isCompleted;
+    const updatedTodoList = [...this.state.todoList];
+    updatedTodoList[updatedTodoIndex] = updatedTodoItem;
+    this.setState({todoList: updatedTodoList});
+  };
+
+  onDeleteTodoHandler = (id) => {
+    this.setState((prevState) => ({
+      todoList: prevState.todoList.filter(todo => todo.id !== id)
+    }));
+  }
+
   render() {
     return (
       <div className="todoapp">
-        <Header />
-        <Todos />
+        <Header changed={this.onChangeTodoHandler}  />
+        <Todos 
+          onDeleteTodo = {this.onDeleteTodoHandler}
+          completedHandler={this.onCompletedHandler} 
+          todos={this.state.todoList}/>
         <Footer />
       </div>
     );
