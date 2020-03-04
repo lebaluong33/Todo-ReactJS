@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {memo} from 'react';
 
 const footer = (props) => {
+  console.log(props.listLength);
   return (       
   <footer className="footer">
     <span className="todo-count">
-      <strong>20</strong>
+     <strong>20</strong>
       <span>items</span>
       <span> left</span>
     </span>
@@ -18,4 +19,4 @@ const footer = (props) => {
   )
 };
 
-export default footer;
+export default memo(footer);

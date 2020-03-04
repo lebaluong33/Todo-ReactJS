@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 
 const Header = (props) => {
   const [todo, setTodo] = useState('');
@@ -35,4 +35,4 @@ const Header = (props) => {
   );
 };
 
-export default Header;
+export default memo(Header);
