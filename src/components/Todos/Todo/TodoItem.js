@@ -1,6 +1,6 @@
 import React from 'react';
 
-const todo = (props) => {
+const todoItem = (props) => {
   return (
     <li>
       <div className="view">
@@ -14,4 +14,4 @@ const todo = (props) => {
   )
 };
 
-export default todo;
+export default todoItem;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Header from '../components/Header/Header';
-import Todos from '../components/Todos/Todos';
+import TodoList from '../components/Todos/TodoList';
 import Footer from '../components/Footer/Footer';
 
 class App extends Component {
@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <div className="todoapp">
         <Header />
-        <Todos />
+        <TodoList />
         <Footer />
       </div>
     );

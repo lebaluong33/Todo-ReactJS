@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Todo from './Todo/Todo';
+import TodoItem from './Todo/TodoItem';
 
-const todos = (props) => {
+const todoList = (props) => {
   return (
     <section className="main">
       <input
@@ -10,11 +10,11 @@ const todos = (props) => {
         type="checkbox" />
       <label htmlFor="toggle-all" ></label>
       <ul className="todo-list">
-        <Todo />
-        <Todo />
+        <TodoItem />
+        <TodoItem />
       </ul>
     </section>
   )
 };
 
-export default todos;
+export default todoList;
