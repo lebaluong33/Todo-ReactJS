@@ -1,20 +1,34 @@
 import React, {memo} from 'react';
 
 const footer = (props) => {
-  console.log(props.listLength);
   return (       
   <footer className="footer">
-    <span className="todo-count">
-     <strong>20</strong>
-      <span>items</span>
+    {props.todoListLength > 0 ? <span className="todo-count">
+     <strong>{props.itemLeft}</strong>
+      <span>{props.itemLeft > 1 ? ' items' : ' item'}</span>
       <span> left</span>
-    </span>
+    </span> : null }
     <ul className="filters">
-      <li><a href="/">All</a></li>
-      <li><a href="/">Active</a></li>
-      <li><a href="/">Completed</a></li>
+      <li>
+        <a
+        className={`${props.category === 'ALL' ? "selected" : ''}`}
+        onClick={() => props.setCategory('ALL')}
+        href="#/all" >All</a>
+      </li>
+      <li>
+        <a
+          className={`${props.category === 'ACTIVE' ? "selected" : ''}`}
+          onClick={() => props.setCategory('ACTIVE')} 
+          href="#/active" >Active</a>
+      </li>
+      <li>
+        <a 
+          className={`${props.category === 'COMPLETED' ? "selected" : ''}`}
+          onClick={() => props.setCategory('COMPLETED')}
+          href="#/completed" >Completed</a>
+      </li>
     </ul>
-    <button className="clear-completed" >Clear completed</button>
+    <button className="clear-completed" onClick={props.clearCompleted} >Clear completed</button>
   </footer>
   )
 };

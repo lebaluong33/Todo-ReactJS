@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React from 'react';
 
 import Todo from './Todo/Todo';
 
@@ -22,4 +22,4 @@ const todos = (props) => {
   )
 };
 
-export default memo(todos);
+export default todos;

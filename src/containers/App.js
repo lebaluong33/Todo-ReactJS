@@ -6,7 +6,9 @@ import Footer from '../components/Footer/Footer';
 
 class App extends Component {
   state = {
-    todoList: []
+    todoList: [],
+    isSelectedAll: false,
+    category: ''
   }
 
   onChangeTodoHandler = (item) => {
@@ -28,17 +30,48 @@ class App extends Component {
     this.setState((prevState) => ({
       todoList: prevState.todoList.filter(todo => todo.id !== id)
     }));
+  };
+
+  clearCompletedHandler = () => {
+    this.setState((prevState) => ({
+      todoList: prevState.todoList.filter(todo => !todo.isCompleted)
+    }));
+  };
+
+  filterTodoHandler = (type = '') => {
+    switch(type) {
+      case 'ACTIVE': 
+        return this.state.todoList.filter(item => !item.isCompleted);
+      case 'COMPLETED':
+        return this.state.todoList.filter(item => item.isCompleted);
+      default: 
+        return this.state.todoList
+    };
+  };
+
+  setCategoryHandler = (type) => {
+    this.setState({category: type});
   }
 
   render() {
+    const todoListLength = this.state.todoList.length;
+    const itemLeft =  this.state.todoList.filter(item => !item.isCompleted).length;
+    const filteredItem = this.filterTodoHandler(this.state.category);
     return (
       <div className="todoapp">
         <Header changed={this.onChangeTodoHandler}  />
         <Todos 
           onDeleteTodo = {this.onDeleteTodoHandler}
           completedHandler={this.onCompletedHandler} 
-          todos={this.state.todoList}/>
-        <Footer />
+          todos={filteredItem}/>
+        { todoListLength !== 0 
+        ? <Footer 
+            category={this.state.category}
+            setCategory={this.setCategoryHandler}
+            todoListLength={todoListLength} 
+            clearCompleted={this.clearCompletedHandler}
+            itemLeft={itemLeft} /> 
+        : null}
       </div>
     );
   };
