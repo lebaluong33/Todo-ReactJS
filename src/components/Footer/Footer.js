@@ -1,20 +1,19 @@
-import React, {memo} from 'react';
+import React, { memo } from 'react';
+import CompletedButton from '../UI/CompletedButton/CompletedButton';
+import RemainItem from './RemainItem/RemainItem';
+import Category from './Category/Category';
 
 const footer = (props) => {
   console.log(props.listLength);
   return (       
   <footer className="footer">
     <span className="todo-count">
-     <strong>20</strong>
-      <span>items</span>
-      <span> left</span>
+      <RemainItem />
     </span>
     <ul className="filters">
-      <li><a href="/">All</a></li>
-      <li><a href="/">Active</a></li>
-      <li><a href="/">Completed</a></li>
+     <Category />
     </ul>
-    <button className="clear-completed" >Clear completed</button>
+    <CompletedButton />
   </footer>
   )
 };

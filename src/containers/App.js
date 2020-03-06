@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Header from '../components/Header/Header';
-import Todos from '../components/Todos/Todos';
+import TodoList from '../components/Todos/TodoList';
 import Footer from '../components/Footer/Footer';
 
 class App extends Component {
@@ -9,7 +9,7 @@ class App extends Component {
     todoList: []
   }
 
-  onChangeTodoHandler = (item) => {
+  onAddTodoHandler = (item) => {
     const updatedTodos = this.state.todoList;
     updatedTodos.push(item);
     this.setState({todoList: updatedTodos});
@@ -33,8 +33,8 @@ class App extends Component {
   render() {
     return (
       <div className="todoapp">
-        <Header changed={this.onChangeTodoHandler}  />
-        <Todos 
+        <Header changed={this.onAddTodoHandler}  />
+        <TodoList 
           onDeleteTodo = {this.onDeleteTodoHandler}
           completedHandler={this.onCompletedHandler} 
           todos={this.state.todoList}/>
