@@ -1,34 +1,30 @@
-import React, {memo} from 'react';
+import React, { memo } from 'react';
+import ClearCompleted from '../UI/ClearCompleted/ClearCompleted';
+import RemainItem from './RemainItem/RemainItem';
+import Category from './Category/Category';
 
 const footer = (props) => {
+  const categories = ['All', 'Active', 'Completed'];
   return (       
   <footer className="footer">
     {props.todoListLength > 0 ? <span className="todo-count">
-     <strong>{props.itemLeft}</strong>
-      <span>{props.itemLeft > 1 ? ' items' : ' item'}</span>
-      <span> left</span>
+    <RemainItem itemLeft={props.itemLeft}/>
     </span> : null }
     <ul className="filters">
-      <li>
-        <a
-        className={`${props.category === 'ALL' ? "selected" : ''}`}
-        onClick={() => props.setCategory('ALL')}
-        href="#/all" >All</a>
-      </li>
-      <li>
-        <a
-          className={`${props.category === 'ACTIVE' ? "selected" : ''}`}
-          onClick={() => props.setCategory('ACTIVE')} 
-          href="#/active" >Active</a>
-      </li>
-      <li>
-        <a 
-          className={`${props.category === 'COMPLETED' ? "selected" : ''}`}
-          onClick={() => props.setCategory('COMPLETED')}
-          href="#/completed" >Completed</a>
-      </li>
+      <Category 
+        setCategory={props.setCategory} 
+        category={props.category} 
+        name={categories[0]}/>
+      <Category
+        setCategory={props.setCategory} 
+        category={props.category} 
+        name={categories[1]}/>
+      <Category
+        setCategory={props.setCategory} 
+        category={props.category} 
+        name={categories[2]}/>
     </ul>
-    <button className="clear-completed" onClick={props.clearCompleted} >Clear completed</button>
+    <ClearCompleted clearCompleted={props.clearCompleted} /> 
   </footer>
   )
 };

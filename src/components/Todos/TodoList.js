@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Todo from './Todo/Todo';
+import TodoItem from './Todo/TodoItem';
 
-const todos = (props) => {
+const todoList = (props) => {
   return (
     <section className="main">
       <input
@@ -11,7 +11,7 @@ const todos = (props) => {
       <label htmlFor="toggle-all" ></label>
       <ul className="todo-list">
         {props.todos.map((item) =>(
-          <Todo
+          <TodoItem
             onDeleteTodo={props.onDeleteTodo}
             completedHandler={props.completedHandler}
             key={item.id}
@@ -22,4 +22,4 @@ const todos = (props) => {
   )
 };
 
-export default todos;
+export default todoList;

@@ -1,6 +1,6 @@
 import React, {memo} from 'react';
 
-const todo = (props) => {
+const todoItem = (props) => {
   return (
     <li className={`${props.todo.isCompleted ? 'completed' : ''}`}>
       <div className="view">
@@ -16,4 +16,4 @@ const todo = (props) => {
   )
 };
 
-export default memo(todo);
+export default memo(todoItem);
