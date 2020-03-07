@@ -1,17 +1,19 @@
-import React from 'react';
+import React, {memo} from 'react';
 
 const todoItem = (props) => {
   return (
-    <li>
+    <li className={`${props.todo.isCompleted ? 'completed' : ''}`}>
       <div className="view">
         <input
           className="toggle"
-          type="checkbox"/>
-        <label >sasfsd</label>
-        <button className="destroy" />
+          type="checkbox"
+          checked={props.todo.isCompleted}
+          onChange={() => props.completedHandler(props.todo.id)}/>
+        <label >{props.todo.value}</label>
+        <button className="destroy" onClick={() => props.onDeleteTodo(props.todo.id)} />
       </div>
     </li>
   )
 };
 
-export default todoItem;
+export default memo(todoItem);

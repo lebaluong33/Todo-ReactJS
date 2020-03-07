@@ -10,8 +10,13 @@ const todoList = (props) => {
         type="checkbox" />
       <label htmlFor="toggle-all" ></label>
       <ul className="todo-list">
-        <TodoItem />
-        <TodoItem />
+        {props.todos.map((item) =>(
+          <TodoItem
+            onDeleteTodo={props.onDeleteTodo}
+            completedHandler={props.completedHandler}
+            key={item.id}
+            todo={item}/>
+        ))}
       </ul>
     </section>
   )
