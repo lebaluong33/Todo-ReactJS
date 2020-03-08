@@ -1,11 +1,20 @@
 import React, { memo } from 'react';
-const category = (props) => (
-  <li>
-  <a
-    className={`${props.category === props.name.toUpperCase() ? "selected" : ''}`}
-    onClick={() => props.setCategory( props.name.toUpperCase())}
-    href={"#/" + props.name.toLowerCase()} >{props.name}</a>
-  </li>
-);
 
-export default memo(category);
+const Category = (props) => {
+  const { category, name, setCategory } = props;
+  let upperCaseName = '';
+  let lowerCase = '';
+  if( name ) {
+    upperCaseName = name.toUpperCase();
+    lowerCase = name.toLowerCase();
+  };
+  return (
+    <li>
+    <a
+      className={`${category === upperCaseName ? "selected" : ''}`}
+      onClick={() => setCategory(upperCaseName)}
+      href={"#/" + lowerCase} >{name}</a>
+    </li>
+  );
+};
+export default memo(Category);

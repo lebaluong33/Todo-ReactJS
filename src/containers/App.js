@@ -56,6 +56,7 @@ class App extends Component {
   render() {
     const todoListLength = this.state.todoList.length;
     const itemLeft =  this.state.todoList.filter(item => !item.isCompleted).length;
+    const completedItem = todoListLength - itemLeft;
     const filteredItem = this.filterTodoHandler(this.state.category);
     return (
       <div className="todoapp">
@@ -68,7 +69,7 @@ class App extends Component {
         ? <Footer 
             category={this.state.category}
             setCategory={this.setCategoryHandler}
-            todoListLength={todoListLength} 
+            completedItem={completedItem} 
             clearCompleted={this.clearCompletedHandler}
             itemLeft={itemLeft} /> 
         : null}
