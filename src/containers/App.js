@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 
 import Header from '../components/Header/Header';
-import TodoList from '../components/Todos/TodoList';
+import TodoList from '../components/TodoList/TodoList';
 import Footer from '../components/Footer/Footer';
 
 class App extends Component {
   state = {
     todoList: [],
     isSelectedAll: false,
-    category: ''
+    category: '',
+    isEditingId: ''
   }
 
   onAddTodoHandler = (item) => {
-    const updatedTodos = this.state.todoList;
+    const updatedTodos = [...this.state.todoList];
     updatedTodos.push(item);
     this.setState({todoList: updatedTodos});
   }
@@ -23,7 +24,15 @@ class App extends Component {
     updatedTodoItem.isCompleted = !this.state.todoList[updatedTodoIndex].isCompleted;
     const updatedTodoList = [...this.state.todoList];
     updatedTodoList[updatedTodoIndex] = updatedTodoItem;
-    this.setState({todoList: updatedTodoList});
+    let isSelectedAll = true;
+    const checkIsSelectedAll = updatedTodoList.filter(todo => todo.isCompleted === false);
+    if(checkIsSelectedAll.length){
+      isSelectedAll = false;
+    }
+    this.setState({
+      todoList: updatedTodoList,
+      isSelectedAll: isSelectedAll
+    });
   };
 
   onDeleteTodoHandler = (id) => {
@@ -49,9 +58,37 @@ class App extends Component {
     };
   };
 
-  setCategoryHandler = (type) => {
+  setCategoryHandler = (type = '') => {
     this.setState({category: type});
   }
+
+  selectedAllHandler = () => {
+    const todoList = [...this.state.todoList];
+    const updatedList = todoList.map(todo => {
+      return {...todo, isCompleted : !this.state.isSelectedAll}
+    });
+    this.setState((prevState) => ({
+      todoList: updatedList,
+      isSelectedAll: !prevState.isSelectedAll
+    }));
+  };
+
+  onSetEditingId = (id = '') => {
+    this.setState({isEditingId: id});
+  };
+
+  onEditingTodo = ( todo = {} , index = -1, id) => {
+    if(todo.value === '') {
+      this.onDeleteTodoHandler(id);
+    } else {
+      const { todoList: updatedList } = this.state;
+      updatedList.splice(index, 1, todo);
+      this.setState({
+        todoList: updatedList,
+        isEditingId: ''
+      });
+    }
+  };
 
   render() {
     const todoListLength = this.state.todoList.length;
@@ -62,6 +99,12 @@ class App extends Component {
       <div className="todoapp">
         <Header changed={this.onAddTodoHandler}  />
         <TodoList 
+          onEditingTodo={this.onEditingTodo}
+          onSetEditingId={this.onSetEditingId}
+          isEditingId={this.state.isEditingId}
+          selectedAllHandler={this.selectedAllHandler}
+          todoListLength={todoListLength}
+          isSelectedAll={this.state.isSelectedAll}
           onDeleteTodo = {this.onDeleteTodoHandler}
           completedHandler={this.onCompletedHandler} 
           todos={filteredItem}/>
