@@ -4,7 +4,7 @@ const Header = (props) => {
   const [todo, setTodo] = useState('');
 
   const onKeyPressHandler = (event) => {
-    if(event.key === 'Enter' && todo){
+    if(event.key === 'Enter' && todo.trim() !== ''){
       const todoItem = {
         id: new Date().valueOf(),
         value: todo,
@@ -16,10 +16,7 @@ const Header = (props) => {
   };
 
   const onChangeTextHandler = (event) => {
-    const currentValue = event.target.value;
-    if(currentValue.trim() !== '') {
-      setTodo(event.target.value);
-    }
+    setTodo(event.target.value);
   }
 
   return( <header className="header">

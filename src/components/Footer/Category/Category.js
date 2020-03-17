@@ -1,11 +1,20 @@
-import React, { Fragment } from 'react';
+import React, { memo } from 'react';
 
-const category = (props) => (
-  <Fragment>
-    <li>All</li>
-    <li>Active</li>
-    <li>Completed</li>
-  </Fragment>
-);
-
-export default category;
+const Category = (props) => {
+  const { category, name, setCategory } = props;
+  let upperCaseName = '';
+  let lowerCase = '';
+  if( name ) {
+    upperCaseName = name.toUpperCase();
+    lowerCase = name.toLowerCase();
+  };
+  return (
+    <li>
+    <a
+      className={`${category === upperCaseName ? "selected" : ''}`}
+      onClick={() => setCategory(upperCaseName)}
+      href={"#/" + lowerCase} >{name}</a>
+    </li>
+  );
+};
+export default memo(Category);
