@@ -1,20 +1,29 @@
 import React, { memo } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../../../store/actions/index';
 
 const Category = (props) => {
-  const { category, name, setCategory } = props;
+  const { category, name } = props;
   let upperCaseName = '';
-  let lowerCase = '';
+  let lowerCaseName = '';
   if( name ) {
     upperCaseName = name.toUpperCase();
-    lowerCase = name.toLowerCase();
+    lowerCaseName = name.toLowerCase();
   };
   return (
     <li>
     <a
       className={`${category === upperCaseName ? "selected" : ''}`}
-      onClick={() => setCategory(upperCaseName)}
-      href={"#/" + lowerCase} >{name}</a>
+      onClick={() => props.setCategory(upperCaseName)}
+      href={"#/" + lowerCaseName}   >{name}</a>
     </li>
   );
 };
-export default memo(Category);
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setCategory: (category) => dispatch(actions.setCategoryHandler(category))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(memo(Category));

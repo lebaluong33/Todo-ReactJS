@@ -1,4 +1,6 @@
 import React, { useState, memo } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions/index';
 
 const Header = (props) => {
   const [todo, setTodo] = useState('');
@@ -32,4 +34,10 @@ const Header = (props) => {
   );
 };
 
-export default memo(Header);
+const mapDispatchToProps = dispatch => {
+  return {
+    changed: (todo) => dispatch(actions.addTodoHandler(todo))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(memo(Header));
