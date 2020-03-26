@@ -4,7 +4,7 @@ import { checkSelectedAll } from '../../utilitys/utilitys';
 const initialState = {
   todoList: [],
   isSelectedAll: false,
-  category: '',
+  category: 'ALL',
   isEditingId: ''
 };
 

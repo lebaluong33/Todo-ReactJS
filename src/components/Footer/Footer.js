@@ -15,7 +15,7 @@ const footer = (props) => {
     </span> 
     <ul className="filters">
       {categories.map(cate => (
-        <Category 
+        <Category
           key={cate}
           name={cate}/>
       ))}

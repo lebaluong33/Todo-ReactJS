@@ -20,10 +20,16 @@ const Category = (props) => {
   );
 };
 
+const mapStateToProps = state => {
+  return {
+    category: state.todos.category
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     setCategory: (category) => dispatch(actions.setCategoryHandler(category))
   }
 }
 
-export default connect(null, mapDispatchToProps)(memo(Category));
+export default connect(mapStateToProps, mapDispatchToProps)(memo(Category));
