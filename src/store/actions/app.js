@@ -62,3 +62,16 @@ export const editedTodoHandler = (todo = {} , index = -1, id = '') => {
     id
   };
 };
+
+export const fetchData = () => {
+  return {
+    type: actionTypes.INITIATE_FETCH_DATA
+  }
+};
+
+export const fetchedData = (todoList) => {
+  return {
+    type: actionTypes.FETCHED_DATA,
+    todoList
+  }
+}

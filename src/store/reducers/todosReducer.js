@@ -67,7 +67,13 @@ const todosReducer = (state = initialState, action) => {
           todoList: list,
           isEditingId: ''
         };
-      }
+      };
+    case actionTypes.FETCHED_DATA: 
+      return {
+        ...state,
+        todoList: action.todoList,
+        isSelectedAll: checkSelectedAll(action.todoList)
+      };
     default: return state;
   };
 };

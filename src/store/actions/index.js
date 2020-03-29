@@ -7,5 +7,7 @@ export {
   filterTodoHandler,
   selectedAllHandler,
   setCategoryHandler,
-  setEditingId
+  setEditingId,
+  fetchData,
+  fetchedData
 } from './app';
