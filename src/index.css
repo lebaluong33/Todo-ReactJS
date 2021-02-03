@@ -231,6 +231,7 @@ button {
   line-height: 20px;
   text-decoration: none;
   cursor: pointer;
+  outline: none;
 }
 
 .filters li a.selected {
