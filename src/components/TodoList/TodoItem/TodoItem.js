@@ -17,6 +17,7 @@ const TodoItem = (props) => {
     setEditingTest(event.target.value);
   }
   const onSetTodo = () => {
+    
     onEditedTodo(
       {...todo,
       value: editingText

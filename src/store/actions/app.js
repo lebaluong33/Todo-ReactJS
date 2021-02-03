@@ -74,4 +74,18 @@ export const fetchedData = (todoList) => {
     type: actionTypes.FETCHED_DATA,
     todoList
   }
-}
+};
+
+export const initiatePutData = (todoList) => {
+  return {
+    type: actionTypes.INITIATE_PUT_DATA,
+    todoList
+  }
+};
+
+export const putData = (todoList) => {
+  return {
+    type: actionTypes.PUT_DATA,
+    todoList
+  }
+};

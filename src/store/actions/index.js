@@ -9,5 +9,7 @@ export {
   setCategoryHandler,
   setEditingId,
   fetchData,
-  fetchedData
+  fetchedData,
+  initiatePutData,
+  putData
 } from './app';

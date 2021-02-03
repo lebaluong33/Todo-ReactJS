@@ -1,9 +1,11 @@
-import { takeEvery } from 'redux-saga/effects';
+import { takeLatest, takeEvery } from 'redux-saga/effects';
 
 import * as actionTypes from '../actions/actionTypes';
 
-import { fetchData } from './todosSaga';
+import { fetchData, putData, editData } from './todosSaga';
 
 export function* watchTodos() {
-  yield takeEvery(actionTypes.INITIATE_FETCH_DATA, fetchData)
+  yield takeLatest(actionTypes.INITIATE_FETCH_DATA, fetchData);
+  yield takeEvery(actionTypes.INITIATE_PUT_DATA, putData);
+  yield takeEvery(actionTypes.EDITED_TODO_HANDLER, editData);
 }
